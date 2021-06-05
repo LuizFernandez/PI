@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 
-void exer_1();
-void exer_2();
-void exer_3();
-void exer_4();
+void P1exer_1();
+void P1exer_2();
+void P1exer_3();
+void P1exer_4();
