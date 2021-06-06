@@ -19,7 +19,9 @@ int main(){
     P3exer_2(5);
     P3exer_3V(5);
     P3exer_3H(5);
-
+    P3exer_4C(4);
+    P3exer_4C(5);
+    P3exer_4C(10);
 
     return 0;
 }
