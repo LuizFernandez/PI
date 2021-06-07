@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "stringwork.h": "c",
+        "stdlib.h": "c",
+        "arraywork.h": "c"
+    }
+}
