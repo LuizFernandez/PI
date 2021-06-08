@@ -2,6 +2,7 @@
     "files.associations": {
         "stringwork.h": "c",
         "stdlib.h": "c",
-        "arraywork.h": "c"
+        "arraywork.h": "c",
+        "aluno.h": "c"
     }
 }
