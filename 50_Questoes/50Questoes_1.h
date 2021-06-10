@@ -15,5 +15,14 @@ char *mystrcpy (char *dest, char source[]);
 int mystrcmp (char s1[], char s2[]);
 char *mystrstr (char s1[], char s2[]);
 void mystrrev (char s[]);
+void strnoV (char s[]);
+void truncW (char t[], int n);
+char charMaisfreq (char s[]);
+int iguaisConsecutivos (char s[]);
+int difConsecutivos (char s[]);
+int maiorPrefixo (char s1 [], char s2 []);
+int maiorSufixo (char s1 [], char s2 []);
+int sufPref (char s1[], char s2[]);
+int contaPal (char s[]);
 
 #endif

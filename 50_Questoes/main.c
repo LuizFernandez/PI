@@ -72,12 +72,69 @@ int main(){
             break;
         }
         case 11:{
-            char* s1 = "Nichiri";
+            char* s1 = strdup("Nichiri");
             mystrrev(s1);
             printf("%s\n",s1);
             break;
         }
-        
+        case 12:{
+            char* s1 = strdup("Nichiri");
+            strnoV(s1);
+            printf("%s\n",s1);
+            break;
+        }
+        case 13:{
+            char* s1 = strdup("liberdade, igualdade e fraternidade");
+            truncW(s1, 4);
+            printf("%s\n", s1);
+            break;
+        }
+        case 14:{
+            char* s = strdup("Ensaio da Cegueira");
+            char c = charMaisfreq(s);
+            printf("Caracter mais frequente de %s é: %c\n", s, c);
+            break;
+        }
+        case 15:{
+            char* s = strdup("aabbbaaaaaccccccd");
+            int rep = iguaisConsecutivos(s);
+            printf("String mais longa de char repetidos: %d\n", rep);
+            break;
+        }
+        case 16:{
+            char* s = strdup("adascdeaaaaafdccccccpasodisfdnfu");
+            int notrep = difConsecutivos(s);
+            printf("String mais longa de char diferentes: %d\n", notrep);
+            break;
+        }
+        case 17:{
+            char* s1 = "Flint and Stell";
+            char* s2 = "Flint and Hammer";
+            int prefixo = maiorPrefixo(s1,s2);
+            printf("Tamanho do Prefixo: %d\n", prefixo);
+            break;
+        }
+        case 18:{
+            char* s1 = "Bola, Tijolo, Colher";
+            char* s2 = "Asa Delta Colher";
+            int sufixo = maiorSufixo(s1,s2);
+            printf("Tamanho do Sufixo: %d\n", sufixo);
+            break;
+        }
+        case 19:{
+            char* s1 = "Passaro sem Asa";
+            char* s2 = "Asa Delta Penada";
+            int sufPrefixo = sufPref(s1,s2);
+            printf("Tamanho do SufPref: %d\n", sufPrefixo);
+            break;
+        }
+        case 20:{
+            char* s1 = "Barco afundado no rio de azeite";
+            int palavras = contaPal(s1);
+            printf("Numero de Palavras: %d\n", palavras);
+            break;
+        }
+
     }
 
     return 0;

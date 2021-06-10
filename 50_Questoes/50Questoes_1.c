@@ -176,3 +176,189 @@ void mystrrev (char s[]){
     for(i = 0; i < len; i++)
         s[i] = rev[i];
 }
+
+/*---------------Exercicio 12--------------*/
+void removeIndex(char s[], int i){
+
+    int j;
+
+    for(j=i; s[j]; j++)
+        s[j] = s[j+1];
+
+}
+
+void strnoV (char s[]){
+
+    int i = 0;
+    char c;
+
+    while(c = s[i]){
+        if(c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U'
+        || c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+            removeIndex(s, i);
+        else i++;
+    }
+}
+
+/*---------------Exercicio 13--------------*/
+void truncW (char t[], int n){
+    int aux = 0, i = 0;
+
+    while(t[i]){
+        if(t[i] == ' '){
+            i++;
+            aux = 0;
+        }else if(aux == n)
+            removeIndex(t,i);
+        else{
+            aux++;
+            i++;
+        }
+    }
+}
+
+/*---------------Exercicio 14-------------*/
+int freqChar(char c, char* s){
+    int r = 0;
+
+    for(int i = 0; s[i]; i++)
+        if(s[i] == c)
+            r++;
+
+    return r;
+}
+
+char charMaisfreq (char s[]){
+
+    int max = 0;
+    char c = s[0];
+
+    for(int i = 0; s[i]; i++){
+        int freq = freqChar(s[i], s);
+        if(freq > max){
+            max = freq;
+            c = s[i];
+        }
+    }
+
+    return c;
+}
+
+/*---------------Exercicio 15-------------*/
+int iguaisConsecutivos (char s[]){
+
+    int r = 1, max = 0;
+
+    for(int i = 0; s[i]; i++){
+        if(s[i] == s[i+1])
+            r++;
+        else{  
+            if(r > max)
+                max = r;  
+            r = 1;
+        }
+    }
+
+    return max;
+
+}
+
+/*---------------Exercicio 16-------------*/
+int not_prev_to(char s[], int x, int y){
+
+    int r = 1;
+
+    for(int i = x; i < y && r; i++){
+        if(s[i] == s[y])
+            r = 0;
+        
+    }
+
+    return r;
+
+}
+
+int difConsecutivos(char s[]){
+
+    int r = 0;
+
+    for(int i = 0; s[i]; i++){
+        int isConseq = 0;
+        for(int j = i; s[j]; j++)
+            if(not_prev_to(s,i,j)) isConseq++;
+            else break;
+
+        if(isConseq > r ) r = isConseq;
+    }
+
+    return r;
+}
+
+/*---------------Exercicio 17-------------*/
+int maiorPrefixo (char s1 [], char s2 []){
+
+    int r;
+
+    for(r = 0; s1[r] && s2[r] && s1[r] == s2[r]; r++)
+        ;
+
+    return r;
+}
+
+/*---------------Exercicio 18-------------*/
+int maiorSufixo (char s1 [], char s2 []){
+
+    int s1len;
+    int s2len;
+    int r;
+
+    for(s1len = 0; s1[s1len]; s1len++);
+    for(s2len = 0; s2[s2len]; s2len++);
+
+    for(r = 0; r < s1len && r < s2len && s1[s1len - r -1] == s2[s2len - r -1]; r++);
+    
+    return r;
+}
+
+/*---------------Exercicio 19-------------*/
+int sufPref (char s1[], char s2[]){
+
+    int i = 0, j = 0, r = 0;
+
+    while(s1[i] && s2[j]){
+        if(s1[i] == s2[j]){
+            i++;
+            j++;
+            r++;
+        } else {
+            r = 0;
+            j = 0;
+            i++;
+        }
+    }
+    
+    if(!s2[j] && s1[i])
+        r = 0;
+        
+    return r;
+}
+
+/*---------------Exercicio 20-------------*/
+int contaPal (char s[]){
+
+    int pal = 0, inWord = 0;
+
+    for(int i = 0; s[i]; i++){
+        if(s[i] == ' ' || s[i] == '\n'){
+            if(inWord)
+                pal++;
+            inWord = 0;
+        }else
+            inWord = 1;
+    }
+
+    if(inWord)
+        pal++;
+
+    return pal;
+}
