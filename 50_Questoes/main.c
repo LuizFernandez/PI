@@ -227,7 +227,53 @@ int main(){
             printf("Numero de elementos comuns %d\n", rep);
             break;
         }
-
+        case 36:{
+            int v1[10] = {1,1,2,10,4,6,6,8,8,9};
+            int v2[10] = {1,3,8,4,6,7,8,10,22,33};
+            int rep = comuns(v1, 10, v2, 10);
+            printf("Numero de elementos comuns %d\n", rep);
+            break;
+        }
+        case 37:{
+            int v1[10] = {14,34,2,10,4,54,6,12,8,9};
+            int minI = minInd(v1, 10);
+            printf("O menor numero de v1 está na posicao %d\n", minI);
+            break;
+        }
+        case 38:{
+            int v1[10] = {14,34,2,10,4,54,6,12,8,9};
+            int Ac[10];
+            somasAc(v1, Ac, 10);
+            printf("Soma Acumulada de v1\n");
+            for(int i = 0; i < 10; i++)
+                printf("%d ", Ac[i]);
+            printf("\n");
+            break;
+        }
+        case 39:{
+            int m1[5][5] = {{1,2,3,4,5},
+                           {0,7,8,9,10},
+                           {0,0,13,14,15},
+                           {0,0,0,19,20},
+                           {0,0,0,0,25}};
+            int trisuper = triSup(5,m1);
+            printf("Matriz m %s triangulo superior\n", trisuper ? "é" : "não é");
+            break;
+        }
+        case 40:{
+            int m[5][5] = {{1,2,3,4,5},
+                           {6,7,8,9,10},
+                           {11,12,13,14,15},
+                           {16,17,18,19,20},
+                           {21,22,23,24,25}};
+            transposta(5, m);
+            for(int i = 0; i < 5; i++){
+                for(int j = 0; j < 5; j++)
+                    printf("%d ", m[i][j]);
+                printf("\n");
+            }
+            break;
+        }
     }
 
     return 0;

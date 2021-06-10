@@ -635,10 +635,71 @@ int comunsOrd (int a[], int na, int b[], int nb){
     return r;
 }
 /*---------------Exercicio 36-------------*/
+int comuns (int a[], int na, int b[], int nb){
+
+    int r = 0;
+
+    for(int i = 0; i < na; i++){
+        for(int j = 0; j < nb; j++)
+            if(a[i] == b[j]){
+                r++;
+                break;
+            }
+    }
+
+    return r;
+}
+
 /*---------------Exercicio 37-------------*/
+int minInd (int v[], int N){
+
+    int posMin = 0, min = v[0];
+
+    for(int i = 0; i < N; i++)
+        if(v[i] < min){
+            posMin = i;
+            min = v[i];
+        }
+
+    return posMin;
+
+}
+
 /*---------------Exercicio 38-------------*/
+void somasAc (int v[], int Ac [], int N){
+
+    Ac[0] = v[0];
+
+    for(int i = 1; i < N; i++){
+        Ac[i] = v[i] + Ac[i-1];
+    }
+
+}
+
 /*---------------Exercicio 39-------------*/
+int triSup (int N, float m [N][N]){
+
+    int r = 1;
+    for(int i = 0; i < N && r; i++)
+        for(int j = 0; j < i && r; j++)
+            if(m[i][j] != 0)
+                r = 0;
+    
+    return r;
+}
+
 /*---------------Exercicio 40-------------*/
+void transposta (int N, float m [N][N]){
+    int c;
+
+    for(int i = 0; i < N; i++)
+        for(int j = 0; j < i; j++){
+            c = m[i][j];
+            m[i][j] = m[j][i];
+            m[j][i] = c;
+        }
+        
+}
 /*---------------Exercicio 41-------------*/
 /*---------------Exercicio 42-------------*/
 /*---------------Exercicio 43-------------*/

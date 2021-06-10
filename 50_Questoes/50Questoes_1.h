@@ -39,5 +39,10 @@ int maxCresc (int v[], int N);
 int elimRep (int v[], int N);
 int elimRepOrd (int v[], int N);
 int comunsOrd (int a[], int na, int b[], int nb);
+int comuns (int a[], int na, int b[], int nb);
+int minInd (int v[], int n);
+void somasAc (int v[], int Ac [], int N);
+int triSup (int N, float m [N][N]);
+void transposta (int N, float m [N][N]);
 
 #endif
