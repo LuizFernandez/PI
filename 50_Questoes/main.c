@@ -200,6 +200,33 @@ int main(){
             printf("Numero menos frequente em v1 é %d\n", menosFreq(v1,10));
             break;
         }
+        case 31:{
+            int v1[10] = {0,2,2,2,8,8,12,13,14,15};
+            printf("Numero mais frequente em v1 é %d\n", maisFreq(v1,10));
+            break;
+        }
+        case 32:{
+            int v1[10] = {3,123,54,776,87,45,4,12,14,25};
+            printf("Maior ordem crescente de v1 %d\n", maxCresc(v1,10));
+            break;
+        }
+        case 33:{
+            int v1[10] = {1,4,2,1,4,6,8,3,6,8};
+            printf("Novo tamanho apos perda de elementos repetidos %d\n", elimRep(v1,10));
+            break;
+        }
+        case 34:{
+            int v1[10] = {1,1,2,3,4,6,6,8,8,9};
+            printf("Novo tamanho apos perda de elementos repetidos %d\n", elimRepOrd(v1,10));
+            break;
+        }
+        case 35:{
+            int v1[10] = {1,1,2,3,4,6,6,8,8,9};
+            int v2[10] = {1,3,3,4,6,7,8,10,22,33};
+            int rep = comunsOrd(v1, 10, v2, 10);
+            printf("Numero de elementos comuns %d\n", rep);
+            break;
+        }
 
     }
 

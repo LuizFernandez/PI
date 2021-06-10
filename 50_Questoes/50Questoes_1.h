@@ -34,5 +34,10 @@ void merge (int r [], int a[], int b[], int na, int nb);
 int crescente (int a[], int i, int j);
 int retiraNeg (int v[], int N);
 int menosFreq (int v[], int N);
+int maisFreq (int v[], int N);
+int maxCresc (int v[], int N);
+int elimRep (int v[], int N);
+int elimRepOrd (int v[], int N);
+int comunsOrd (int a[], int na, int b[], int nb);
 
 #endif

@@ -534,10 +534,106 @@ int menosFreq (int v[], int N) {
 }
 
 /*---------------Exercicio 31-------------*/
+ int maisFreq (int v[], int N){
+
+    int freq = 1, maxFreq = 0, ans = v[0], i;
+    for(i = 1; i < N; i++) {
+        if(v[i] == v[i - 1]) freq++;
+        if(v[i] != v[i - 1]) {
+            if(freq > maxFreq) {
+                maxFreq = freq;
+                ans = v[i - 1];
+            }
+            freq = 1;
+        }
+    }
+    if(freq > maxFreq) {
+        maxFreq = freq;
+        ans = v[i - 1];
+    }
+    return ans;
+
+ }
+
 /*---------------Exercicio 32-------------*/
+int maxCresc (int v[], int N){
+
+    int r = 0, bigger = 1;
+
+    for(int i = 0; i < (N-1); i++)
+        if(v[i] <= v[i+1])
+            bigger++;
+        else{
+            if(bigger > r)
+                r = bigger;
+                bigger = 1;
+        }
+
+    if(bigger > r)
+        r = bigger;
+
+    return r;
+}
+
 /*---------------Exercicio 33-------------*/
+int elimRep (int v[], int N){
+
+    int i = 1;
+    while(i < N) {
+        int belongs = 0;
+        int j;
+        for(j = 0; j < i; j++) {
+            if(v[i] == v[j]) belongs = 1;
+        }
+        if(belongs) {
+            for(j = i; j < N; j++) {
+                v[j] = v[j + 1];
+            }
+            N--;
+        } else i++;
+    }
+    return N;
+}
+
 /*---------------Exercicio 34-------------*/
+int elimRepOrd (int v[], int N){
+
+    int i = 1;
+    while(i < N) {
+        int belongs = 0;
+        int j;
+        for(j = 0; j < i; j++) {
+            if(v[i] == v[j]) belongs = 1;
+        }
+        if(belongs) {
+            for(j = i; j < N; j++) {
+                v[j] = v[j + 1];
+            }
+            N--;
+        } else i++;
+    }
+    return N;
+}
+
 /*---------------Exercicio 35-------------*/
+int comunsOrd (int a[], int na, int b[], int nb){
+
+    int i = 0, j = 0, r = 0;
+
+    while(i < na && j < nb){
+        if(a[i] < b[j])
+            i++;
+        else if(a[i] > b[j])
+            j++;
+        else{
+            i++;
+            j++;
+            r++;
+        }
+
+    }
+    return r;
+}
 /*---------------Exercicio 36-------------*/
 /*---------------Exercicio 37-------------*/
 /*---------------Exercicio 38-------------*/
