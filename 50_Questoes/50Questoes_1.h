@@ -24,5 +24,15 @@ int maiorPrefixo (char s1 [], char s2 []);
 int maiorSufixo (char s1 [], char s2 []);
 int sufPref (char s1[], char s2[]);
 int contaPal (char s[]);
+int contaVogais (char s[]);
+int contida (char a[], char b[]);
+int palindorome (char s[]);
+int remRep (char x[]);
+int limpaEspacos (char t[]);
+void insere (int v[], int N, int x);
+void merge (int r [], int a[], int b[], int na, int nb);
+int crescente (int a[], int i, int j);
+int retiraNeg (int v[], int N);
+int menosFreq (int v[], int N);
 
 #endif
