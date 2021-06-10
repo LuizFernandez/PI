@@ -6,7 +6,7 @@ int main(){
     int questao;
     printf("Inserir um numero de 1 a 50: ");
     scanf("%d", &questao);
-    printf("\n-----------------------------------------------\n");
+    printf("-----------------------------------------------\n");
 
     switch (questao){
         case 1:
@@ -50,8 +50,34 @@ int main(){
             break;
         }
         case 8:{
-
+            char source[15] = "Batata mista";
+            char *dest;
+            char *cpy = mystrcpy(dest,source);
+            printf("%s [ORIGINAL] - address %p\n",source,source);
+            printf("%s [COPIADA] - address %p\n",dest,dest);
+            break;
         }
+        case 9:{
+            char *s1 = "Thomas Kahl é lindo";
+            char *s2 = "Thomas ensina a nadar";
+            int num = mystrcmp(s1,s2);
+            printf("Resultado: %d\n", num);
+            break;
+        }
+        case 10:{
+            char* s1 = "Hello World";
+            char* s2 = "World";
+            char* ans = mystrstr(s1,s2);
+            printf("%s\n",ans);
+            break;
+        }
+        case 11:{
+            char* s1 = "Nichiri";
+            mystrrev(s1);
+            printf("%s\n",s1);
+            break;
+        }
+        
     }
 
     return 0;

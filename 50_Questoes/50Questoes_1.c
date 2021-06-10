@@ -104,4 +104,75 @@ char *mystrcat (char s1[], char s2[]){
 }
 
 /*---------------Exercicio 8---------------*/
-char *strcpy (char *dest, char source[]);
+char *mystrcpy (char *dest, char source[]){
+
+    char* result = dest;
+
+    while((*dest = *source)) {
+        source++;
+        dest++;
+    }
+
+    return result;
+}
+
+/*---------------Exercicio 9---------------*/
+int mystrcmp (char s1[], char s2[]){
+
+    int r;
+    while(*s1 && *s2 && *s1 == *s2){
+        s1++;
+        s2++;
+    }
+
+    if(*s1 > *s2 || *s1 < *s2)
+        r = *s1 - *s2;
+    else 
+        r = 0;
+
+    return r;
+
+}
+
+/*---------------Exercicio 10--------------*/
+char *mystrstr (char s1[], char s2[]){
+
+
+    int isContained = 1;
+    char *ans = s1;
+    char *s2Start = s2;
+
+    while(*s1 && *s2){
+        if(*s1 != *s2){
+            isContained = 0;
+            s2 = s2Start;
+        }
+        if(*s1 == *s2){
+            if(!isContained){
+                isContained = 1;
+                ans = s1;
+            }
+            s2++;
+        }
+
+        s1++;
+    }
+
+    if(isContained && !(*s2)) return ans;
+    else return NULL;
+
+}
+
+/*---------------Exercicio 11--------------*/
+void mystrrev (char s[]){
+
+    int len,i;
+    for(len = 0; s[len]; len++)
+        ;
+    char rev[len];
+    for(i = 0; i < len; i++)
+        rev[i] = s[len-i-1];
+    
+    for(i = 0; i < len; i++)
+        s[i] = rev[i];
+}

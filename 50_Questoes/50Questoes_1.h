@@ -2,6 +2,7 @@
 #define Questoes_50_1
 
 #include <stdio.h>
+#include <string.h>
 
 void scanBigger();
 void scanMedia();
@@ -10,6 +11,9 @@ int bitsUm (unsigned int n);
 int trailingZ (unsigned int n);
 int qDig (unsigned int n);
 char *mystrcat (char s1[], char s2[]);
-char *strcpy (char *dest, char source[]);
+char *mystrcpy (char *dest, char source[]);
+int mystrcmp (char s1[], char s2[]);
+char *mystrstr (char s1[], char s2[]);
+void mystrrev (char s[]);
 
 #endif
