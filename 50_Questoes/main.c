@@ -274,7 +274,128 @@ int main(){
             }
             break;
         }
-    }
-
+        case 41:{
+            int m[5][5] = {{1,2,3,4,5},
+                           {6,7,8,9,10},
+                           {11,12,13,14,15},
+                           {16,17,18,19,20},
+                           {21,22,23,24,25}};
+            int m1[5][5] = {{1,2,3,4,5},
+                           {0,7,8,9,10},
+                           {0,0,13,14,15},
+                           {0,0,0,19,20},
+                           {0,0,0,0,25}};
+            addTo(5,5,m,m1);
+            for(int i = 0; i < 5; i++){
+                for(int j = 0; j < 5; j++)
+                    printf("%d ", m[i][j]);
+                printf("\n");
+            }
+            break;
+        }
+        case 42:{
+            int set1[10] = {1,3,5,7,9,6};
+            int set2[10] = {1,4,7,0,9};
+            int setx[10];
+            int resp = unionSet(10,set1,set2,setx);
+            printf("UnionSet de set1 e set2 : Length => %d\n",resp);
+            for(int i = 0; i < 10; i++)
+                printf("%d ", setx[i]);
+            printf("\n");
+            break;
+        }
+        case 43:{
+            int set1[10] = {1,3,5,7,9,6};
+            int set2[10] = {1,4,7,8,9};
+            int setx[10];
+            int resp = intersectSet(10,set1,set2,setx);
+            printf("IntersectSet de set1 e set2 : Length => %d\n",resp);
+            for(int i = 0; i < 10; i++)
+                printf("%d ", setx[i]);
+            printf("\n");
+            break;
+        }
+        case 44:{
+            int set1[10] = {1,3,3,5,7,9,9};
+            int set2[10] = {1,2,4,7,8,9};
+            int setx[10];
+            int resp = intersectMSet(10,set1,set2,setx);
+            printf("IntersectMSet de set1 e set2 : Length => %d\n",resp);
+            for(int i = 0; i < 10; i++)
+                printf("%d ", setx[i]);
+            printf("\n");
+            break;
+        }
+        case 45:{
+            int set1[10] = {1,3,3,5,7,9,9};
+            int set2[10] = {1,2,4,7,8,9};
+            int setx[10];
+            int resp = unionMSet(10,set1,set2,setx);
+            printf("UnionMSet de set1 e set2 : Length => %d\n",resp);
+            for(int i = 0; i < 10; i++)
+                printf("%d ", setx[i]);
+            printf("\n");
+            break;
+        }
+        case 46:{
+            int set1[10] = {1,3,3,5,7,9,9};
+            int set2[10] = {1,2,4,7,8,9};
+            int setx[10];
+            int resp1 = unionMSet(10,set1,set2,setx);
+            int resp2 = cardinalMSet(10,setx);
+            printf("UnionMSet de set1 e set2 : Length => %d\n",resp1);
+            for(int i = 0; i < 10; i++)
+                printf("%d ", setx[i]);
+            printf("\n");
+            printf("Resposta: %d\n", resp2);
+            break; 
+        }
+        case 47:{
+            Posicao pi = {2,5};
+            Movimento movs[10] = {Norte, Norte, Este, Sul, Sul, Oeste, Oeste, Sul, Este, Sul};
+            Posicao pf = posFinal(pi,movs,10);
+            printf("Posição final: (%d,%d)\n",pf.x,pf.y);
+            break; 
+        }
+        case 48:{
+            
+            Posicao pi = {2,5};
+            Posicao pf = {5,8};
+            Movimento movs[10];
+            int resp = caminho(pi,pf,movs,10);
+            if(resp < 0) printf("Caminho não encontrado.");
+            else {
+                printf("O caminho é: ");
+                for(int i = 0; i < resp; i++) {
+                    if(movs[i] == Norte) printf("Norte ");
+                    if(movs[i] == Sul) printf("Sul ");
+                    if(movs[i] == Este) printf("Este ");
+                    if(movs[i] == Oeste) printf("Oeste ");
+                }
+            }
+            printf("\n");
+            break;
+        }/*
+        case 49:{
+            printf("Número de posições: ");
+            assert(scanf("%d", &num) == 1);
+            Posicao poss[num];
+            getPosArray(num,poss);
+            resp = maisCentral(poss,num);
+            printf("Resposta: %d",resp);
+            break; }
+        case 50:
+            printf("Posição central: ");
+            assert(scanf("%d %d",&num1,&num2) == 2);
+            Posicao pc = {num1,num2};
+            printf("Número de posições: ");
+            assert(scanf("%d", &num) == 1);
+            Posicao poss[num];
+            getPosArray(num,poss);
+            resp = vizinhos(pc,poss,num);
+            printf("Resposta: %d",resp);
+            break;
+    }*/
+    printf("\n");
     return 0;
 }

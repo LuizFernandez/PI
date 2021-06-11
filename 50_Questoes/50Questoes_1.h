@@ -3,6 +3,13 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
+
+typedef enum movimento {Norte, Oeste, Sul, Este} Movimento;
+
+typedef struct posicao {
+    int x, y;
+} Posicao;
 
 void scanBigger();
 void scanMedia();
@@ -44,5 +51,15 @@ int minInd (int v[], int n);
 void somasAc (int v[], int Ac [], int N);
 int triSup (int N, float m [N][N]);
 void transposta (int N, float m [N][N]);
+void addTo (int N, int M, int a [N][M], int b[N][M]);
+int unionSet (int N, int v1[N], int v2[N], int r[N]);
+int intersectSet (int N, int v1[N], int v2[N], int r[N]);
+int intersectMSet (int N, int v1[N], int v2[N], int r[N]);
+int unionMSet (int N, int v1[N], int v2[N], int r[N]);
+int cardinalMSet (int N, int v[N]);
+Posicao posFinal (Posicao inicial, Movimento mov[], int N);
+int caminho (Posicao inicial, Posicao final, Movimento mov[], int N);
+int maisCentral (Posicao pos[], int N);
+int vizinhos (Posicao p, Posicao pos[], int N);
 
 #endif

@@ -698,15 +698,169 @@ void transposta (int N, float m [N][N]){
             m[i][j] = m[j][i];
             m[j][i] = c;
         }
-        
+
 }
 /*---------------Exercicio 41-------------*/
+void addTo (int N, int M, int a [N][M], int b[N][M]){
+
+    for(int i = 0; i < N; i++)
+        for(int j = 0; j < M; j++)
+            a[i][j] += b[i][j];
+
+}
+
 /*---------------Exercicio 42-------------*/
+int unionSet (int N, int v1[N], int v2[N], int r[N]){
+    int len = 0;
+
+    for(int i = 0; i < N; i++){
+        r[i] = v1[i] || v2[i];
+        len += r[i];
+    }
+
+    return len;
+}
+
 /*---------------Exercicio 43-------------*/
+int intersectSet (int N, int v1[N], int v2[N], int r[N]){
+    int len = 0;
+
+    for(int i = 0; i < N; i++){
+        r[i] = v1[i] && v2[i];
+        len += r[i];
+    }
+
+    return len;
+}
+
 /*---------------Exercicio 44-------------*/
+int intersectMSet (int N, int v1[N], int v2[N], int r[N]){
+
+    int len = 0;
+
+    for(int i = 0; i < N; i++){
+        r[i] = (v1[i] < v2[i]) ? v1[i] : v2[i];
+        len += r[i]; 
+    }
+
+    return len;
+}
+
 /*---------------Exercicio 45-------------*/
+int unionMSet (int N, int v1[N], int v2[N], int r[N]){
+    int len = 0;
+
+    for(int i = 0; i < N; i++){
+        r[i] = (v1[i] > v2[i]) ? v1[i] : v2[i];
+        len += r[i]; 
+    }
+
+    return len;
+}
+
 /*---------------Exercicio 46-------------*/
+int cardinalMSet (int N, int v[N]){
+    int len = 0;
+
+    for(int i = 0; i < N; i++)
+        len += v[i];
+    
+    return len;
+
+}
+
 /*---------------Exercicio 47-------------*/
+Posicao posFinal (Posicao inicial, Movimento mov[], int N){
+
+    for(int i = 0; i < N; i++){
+        Movimento nextStep = mov[i];
+        switch (nextStep){
+            case Norte:
+                inicial.y++;
+                break;
+            case Sul:
+                inicial.y--;
+                break;
+            case Este:
+                inicial.x++;
+                break;
+            case Oeste:
+                inicial.x--;
+                break;
+        }
+        
+    }
+
+    return inicial;
+}
+
 /*---------------Exercicio 48-------------*/
+int caminho (Posicao inicial, Posicao final, Movimento mov[], int N){
+
+    int i;
+
+    for(i = 0; i < N; i++){
+        if(inicial.y < final.y){
+            mov[i] = Norte;
+            inicial.y++;
+        }else if(inicial.y > final.y){
+            mov[i] = Sul;
+            inicial.y--;
+        }else if(inicial.x < final.x){
+            mov[i] = Este;
+            inicial.x++;
+        }else if(inicial.x > final.x){
+            mov[i] = Oeste;
+            inicial.x--;
+        }
+    }
+
+    if(inicial.y != final.y || inicial.x != final.x)
+        i = -1;
+    
+    return i;
+        
+}
+
 /*---------------Exercicio 49-------------*/
+
+float dist(Posicao x, Posicao y){
+
+    float xs = pow((x.x - y.x),2);
+    float ys = pow((x.y - y.y),2);
+
+    return sqrt(xs + ys);
+
+}
+
+int maisCentral (Posicao pos[], int N){
+
+    Posicao inicial;
+    inicial.x = 0;
+    inicial.y = 0; 
+    int index = 0;
+    float distancia =  dist(inicial, pos[0]);
+
+    for(int i = 1; i < N; i++){
+        if(dist(inicial, pos[i]) < distancia){
+            index = i;
+            distancia = dist(inicial, pos[i]);
+        }
+    }
+
+    return index;
+
+}
+
 /*---------------Exercicio 50-------------*/
+int vizinhos (Posicao p, Posicao pos[], int N){
+
+    int r = 0;
+
+    for(int i = 0; i < N; i++){
+        if(dist(pos[i],p) == 1)
+            r++;
+    }
+
+    return r;
+}
