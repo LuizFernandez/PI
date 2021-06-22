@@ -406,18 +406,237 @@ void remreps (LInt l){
 }
 
 /*---------------Exercicio 26-------------*/
+LInt rotateL (LInt l){
+
+    if(!l || !l->prox) return l;
+
+    LInt tmp = l, *sitio;
+    sitio = &l;
+    *sitio = (*sitio)->prox;
+
+    while(*sitio)
+        sitio = &((*sitio)->prox);
+    
+    *sitio = tmp;
+    (*sitio)->prox = NULL;
+
+    return l;
+}
+
 /*---------------Exercicio 27-------------*/
+LInt parte (LInt l){
+
+    if(!l || !l->prox) return NULL;
+
+    LInt new = l->prox;
+    l->prox = l->prox->prox;
+    new->prox = parte(l->prox);
+
+    return new;
+}
+
 /*---------------Exercicio 28-------------*/
+int altura (ABin a){
+    
+    if(!a) return 0;
+
+    int r = 1;
+    int esq = altura(a->esq);
+    int dir = altura(a->dir);
+
+    if(esq > dir)
+        r += esq;
+    else
+        r += dir;
+    
+    return r;
+}
+
 /*---------------Exercicio 29-------------*/
+ABin cloneAB (ABin a){
+
+    if(!a) return NULL;
+
+    ABin r = malloc(sizeof(NABin));
+
+    r->valor = a->valor;
+    r->esq = cloneAB(a->esq);
+    r->dir = cloneAB(a->dir);
+
+    return r;
+}
+
 /*---------------Exercicio 30-------------*/
+void mirror (ABin* a){
+
+    if(!(*a)) return ;
+
+    ABin tmp = (*a)->dir;
+    (*a)->dir = (*a)->esq;
+    (*a)->esq = tmp;
+
+    mirror(&((*a)->esq));
+    mirror(&((*a)->dir));
+
+}
+
 /*---------------Exercicio 31-------------*/
+void inorder (ABin a, LInt *l){
+
+    if(!a) return;
+
+    inorder(a->dir,l);
+    LInt nodo = malloc(sizeof(NLInt));
+    nodo->valor = a->valor;
+    nodo->prox = *l;
+    inorder(a->esq, &nodo);
+
+    *l = nodo;
+ 
+}
+
 /*---------------Exercicio 32-------------*/
+void preorderAux (ABin a, LInt * l) {
+    if(!a) return;
+
+    preorderAux(a->dir,l);
+    preorderAux(a->esq,l);
+    LInt nodo = malloc(sizeof(NLInt));
+    nodo->valor = a->valor;
+    nodo->prox = *l;
+
+    *l = nodo;
+}
+
+void preorder(ABin a, LInt *l){
+    *l = NULL;
+    preorderAux(a,l);
+}
+
 /*---------------Exercicio 33-------------*/
+void posorderAux(ABin a, LInt *l){
+
+    if(!a) return;
+
+    LInt nodo = malloc(sizeof(NLInt));
+    nodo->valor = a->valor;
+    nodo->prox = *l;
+    *l = nodo;
+    posorderAux(a->dir, l);
+    posorderAux(a->esq, l);
+
+}
+
+void posorder (ABin a, LInt *l){
+    *l = NULL;
+    posorderAux(a,l);
+}
+
 /*---------------Exercicio 34-------------*/
+int depth (ABin a, int x){
+
+    if(!a) return -1;
+
+    int r = 0;
+
+    if(a->valor != x){
+        r++;
+        int esq = depth(a->esq,x);
+        int dir = depth(a->dir,x);
+        if(esq == -1 && dir == -1)
+            r = -1;
+        else if(esq == -1)
+            r += dir;
+        else if(dir == -1)
+            r += esq;
+        else if(dir < esq)
+            r += dir;
+        else
+            r += esq;
+    } else r = 1;
+
+    return r;
+}
+
 /*---------------Exercicio 35-------------*/
+int freeAB (ABin a){
+
+    int r;
+
+    if(!a) r = 0;
+    else {
+        r = 1;
+        int esq = freeAB(a->esq);
+        int dir = freeAB(a->dir);
+        free(a);
+        r += esq;
+        r += dir;
+    }
+
+    return r;
+    
+}
+
 /*---------------Exercicio 36-------------*/
-/*---------------Exercicio 37------------*/
+int pruneAB (ABin *a, int l){
+    int n = 0;
+
+    if(*a){
+        if(l == 0) {
+            n = 1;
+            n += pruneAB(&((*a)->esq),0);
+            n += pruneAB(&((*a)->dir),0);
+            free(*a);
+            (*a) = NULL;
+        } else{ 
+            n += pruneAB(&((*a)->esq),l - 1);
+            n += pruneAB(&((*a)->dir),l - 1);
+        }
+    }
+    
+    return n;
+}
+
+/*---------------Exercicio 37-------------*/
+int iguaisAB (ABin a, ABin b){
+
+    int n;
+    
+    if((!a && b) || (a && !b))
+        n = 0;
+    else if(!a && !b) 
+         n = 1;
+    else {
+        if(a->valor != b->valor)
+            n = 0;
+        else{
+            n = iguaisAB(a->dir, b->dir) && iguaisAB(a->esq, b->esq);
+        }
+    }
+    
+    return n;
+}
+
 /*---------------Exercicio 38-------------*/
+LInt nivelL (ABin a, int n){
+
+    LInt list = NULL;
+
+    if(n == 1){
+        list = malloc(sizeof(NLInt));
+        list->valor = a->valor;
+        list->prox = NULL;
+    }else{
+        LInt esq = nivelL(a->esq, (n-1));
+        LInt dir = nivelL(a->dir, (n-1));
+
+        list = concat(esq,dir);
+    }
+
+    return list;
+}
+
+
 /*---------------Exercicio 39-------------*/
 /*---------------Exercicio 40-------------*/
 /*---------------Exercicio 41-------------*/
