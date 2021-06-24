@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "50questoes_1.h": "c"
+        "50questoes_1.h": "c",
+        "exercicio.h": "c",
+        "stdio.h": "c"
     }
 }
