@@ -2,6 +2,7 @@
     "files.associations": {
         "50questoes_1.h": "c",
         "exercicio.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "partea.h": "c"
     }
 }
