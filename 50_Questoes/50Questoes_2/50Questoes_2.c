@@ -618,11 +618,27 @@ int iguaisAB (ABin a, ABin b){
 }
 
 /*---------------Exercicio 38-------------*/
+LInt concat (LInt a, LInt b){
+
+    LInt r = a, *sitio;
+    sitio = &r;
+
+    while(*sitio)
+        sitio = &((*sitio)->prox);
+    
+    *sitio = b;
+
+    return r;
+
+}
+
 LInt nivelL (ABin a, int n){
 
-    LInt list = NULL;
+    LInt list;
+    
+    if(!a || n < 0) list = NULL;
 
-    if(n == 1){
+    else if(n == 1){
         list = malloc(sizeof(NLInt));
         list->valor = a->valor;
         list->prox = NULL;
@@ -636,16 +652,207 @@ LInt nivelL (ABin a, int n){
     return list;
 }
 
-
 /*---------------Exercicio 39-------------*/
+int nivelV (ABin a, int n, int v[]){
+    if(!a || n < 0) return 0;
+
+    if(n == 1){
+        *v = a->valor;
+        return 1;
+    }else{
+        int e = nivelV(a->esq, n-1, v);
+        int d = nivelV(a->dir, n-1, v + e);
+        return e+d;
+    }
+
+}
+
 /*---------------Exercicio 40-------------*/
+int dumpAbin (ABin a, int v[], int N){
+
+    if(!a || N < 0) return 0;
+
+    int d = dumpAbin(a->dir, v, N);
+    if(d < N){
+        v[d++] = a->valor;
+        return d + dumpAbin(a->esq, v+d, (N-d));
+    } else 
+        return N;
+
+}
+
 /*---------------Exercicio 41-------------*/
+ABin somasAcA (ABin a){
+
+    if(!a) return NULL;
+
+    int acc = a->valor;
+
+    ABin r = malloc(sizeof(NABin));
+    r->dir = somasAcA(a->dir);
+    r->esq = somasAcA(a->esq);
+    r->valor = a->valor + (r->dir ? r->dir->valor : 0) + (r->esq ? r->esq->valor : 0);
+
+    return r;
+
+}
+
 /*---------------Exercicio 42-------------*/
+int contaFolhas (ABin a){
+    if(!a) return 0;
+
+    int e, d, r = 0;
+
+    if(a->dir == NULL && a->esq == NULL)
+        r = 1;
+    else{
+        e = contaFolhas(a->esq);
+        d = contaFolhas(a->dir);
+        r = e + d;
+    }
+
+    return r;
+}
+
 /*---------------Exercicio 43-------------*/
+ABin cloneMirror (ABin a){
+
+    if(!a) return NULL;
+
+    ABin r = malloc(sizeof(NABin));
+    r->valor = a->valor;
+    r->esq = cloneMirror(a->dir);
+    r->dir = cloneMirror(a->esq);
+
+    return r;
+}
+
 /*---------------Exercicio 44-------------*/
+int addOrd (ABin *a, int x){
+
+    ABin nodo = malloc(sizeof(NABin));
+    nodo->valor = x;
+    nodo->dir = nodo->esq = NULL;
+
+    while(*a){
+        if((*a)->valor == x)
+            return 1;
+        else if((*a)->valor > x)
+            a = &((*a)->esq);
+        else 
+            a = &((*a)->dir);
+    }
+
+    if(!(*a)) *a = nodo;
+
+    return 0;
+}
+
 /*---------------Exercicio 45-------------*/
+int lookupAB (ABin a, int x) {
+
+    int r = 0;
+
+    while(a && !r){
+        if(a->valor == x)
+            r = 1;
+        else if(a->valor > x)
+            a = a->esq;
+        else
+            a = a->dir;
+
+    }
+
+    return r;
+}
+
 /*---------------Exercicio 46-------------*/
+int depthOrd (ABin a, int x){
+
+    int r = 1;
+
+    while(a && a->valor != x){
+        if(a->valor <= x)
+            a = a->dir;
+        else if(a->valor > x)
+            a = a->esq;
+        r++;
+    }
+
+    if(!a) r = -1;
+
+    return r;
+}
+
 /*---------------Exercicio 47-------------*/
+int maiorAB (ABin a){
+
+    while(a->dir)
+        a = a->dir;
+    
+    return a->valor;
+}
+
 /*---------------Exercicio 48-------------*/
+void removeMaiorA (ABin *a){
+
+    while((*a)->dir)
+        a = &((*a)->dir);
+    
+    if((*a)->esq){
+        ABin tmp = *a;
+        *a = (*a)->esq;
+        free(tmp);
+    } else {
+        ABin tmp = *a;
+        *a = NULL;
+        free(tmp);
+    }
+
+}
+
 /*---------------Exercicio 49-------------*/
+int quantosMaiores (ABin a, int x){
+
+    if(!a) return 0;
+
+    if(a->valor <= x)
+        return quantosMaiores(a->dir, x);
+    else if(a->valor > x)
+        return 1 + quantosMaiores(a->esq, x) + quantosMaiores(a->dir, x);
+
+}
+
 /*---------------Exercicio 50-------------*/
+void listToBTree (LInt l, ABin *a){
+
+    if(!l) (*a) = NULL;
+    else{
+    
+        LInt aux = parteAmeio(&l);
+
+        (*a) = malloc(sizeof(NABin));
+        (*a)->valor = l->valor;
+        listToBTree(l->prox, &((*a)->dir));
+        listToBTree(aux, &((*a)->esq));
+    }
+}
+
+/*---------------Exercicio 51-------------*/
+int deProcuraAux(ABin a, int x, int maior) {
+    if(!a) return 1;
+
+    if((maior && a->valor < x) || (!maior && a->valor > x))
+        return 0;
+
+    return deProcuraAux(a->esq,x,maior) && deProcuraAux(a->dir,x,maior);
+}
+
+int deProcura (ABin a) {
+    if(!a) return 1;
+
+    int b = deProcuraAux(a->esq,a->valor, 0) && deProcura(a->esq);
+    int c = deProcuraAux(a->dir,a->valor, 1) && deProcura(a->dir);
+
+    return b && c;
+}
